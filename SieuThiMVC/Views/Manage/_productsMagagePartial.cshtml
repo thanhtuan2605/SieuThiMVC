@@ -1,0 +1,39 @@
+﻿@model SieuThiMVC.Models.ListProduct
+<h1>Hàng hóa
+</h1>
+@if(Model!=null)
+{
+<table>
+    <tr>
+        <td>Tên hàng</td>
+        <td>Giá</td>
+        <td>Mô tả</td>
+        <td>Hình ảnh</td>
+        <td>Tùy chỉnh</td>
+    </tr>
+@foreach(var item in Model.MyList)
+{
+    <tr>
+        <td>
+            @item.Name
+        </td>
+        <td>
+            @item.Cost
+        </td>
+        <td>
+            @item.Discription
+        </td>
+        <td>
+            <img class="smallimg" src='~/Images/ProductImages/@item.ImgLink'/>
+        </td>
+        <td>
+            @Ajax.ActionLink("Xóa","DeleteProduct",new{name =item.Name}, new AjaxOptions{
+            InsertionMode = InsertionMode.Replace,
+            HttpMethod = "POST",
+            UpdateTargetId = "tbProducts"})
+        </td>
+    </tr>
+}
+</table>
+}
+

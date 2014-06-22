@@ -1,0 +1,36 @@
+﻿@model SieuThiMVC.Models.ProductModel
+@{
+    ViewBag.Title = "AddProduct";
+}
+
+<h2>Thêm hàng hóa</h2>
+@using (Html.BeginForm("AddProduct", "Manage", FormMethod.Post, 
+                            new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <ol>
+        <li>
+            @Html.LabelFor(m => m.CategoryID)
+            @Html.DropDownListFor(m => m.CategoryID, new SelectList(SieuThiMVC.DataAccess.ProductsDBO.GetSortsOfProduct(), "ID", "Name"), new {id = "listlhh" })
+        </li>
+        <li>
+            @Html.LabelFor(m => m.Name)
+            @Html.TextBoxFor(m => m.Name)
+        </li>
+        <li>
+            @Html.LabelFor(m => m.Cost)
+            @Html.TextBoxFor(m => m.Cost)
+        </li>
+        <li>
+            @Html.LabelFor(m => m.Discription)
+            @Html.TextBoxFor(m => m.Discription)
+        </li>
+        <li>
+            @Html.LabelFor(m=>m.ImgLink)
+            <input id="ImagePath" title="Upload a product image" type="file" name="file" />'
+        </li>
+    </ol>
+    <input type="submit" value="Add product" />
+}

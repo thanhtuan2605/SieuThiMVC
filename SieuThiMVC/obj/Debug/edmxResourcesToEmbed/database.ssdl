@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLHangHoaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="QLHangHoaModelStoreContainer">
+    <EntitySet Name="HangHoa" EntityType="QLHangHoaModel.Store.HangHoa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HoaDon" EntityType="QLHangHoaModel.Store.HoaDon" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="LoaiHangHoa" EntityType="QLHangHoaModel.Store.LoaiHangHoa" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuangCao" EntityType="QLHangHoaModel.Store.QuangCao" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="sysdiagrams" EntityType="QLHangHoaModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TaiKhoan" EntityType="QLHangHoaModel.Store.TaiKhoan" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_HangHoa_LoaiHangHoa" Association="QLHangHoaModel.Store.FK_HangHoa_LoaiHangHoa">
+      <End Role="LoaiHangHoa" EntitySet="LoaiHangHoa" />
+      <End Role="HangHoa" EntitySet="HangHoa" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDon_HangHoa" Association="QLHangHoaModel.Store.FK_HoaDon_HangHoa">
+      <End Role="HangHoa" EntitySet="HangHoa" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+    <AssociationSet Name="FK_HoaDon_TaiKhoan" Association="QLHangHoaModel.Store.FK_HoaDon_TaiKhoan">
+      <End Role="TaiKhoan" EntitySet="TaiKhoan" />
+      <End Role="HoaDon" EntitySet="HoaDon" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="HangHoa">
+    <Key>
+      <PropertyRef Name="MaHH" />
+    </Key>
+    <Property Name="MaHH" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="MaLHH" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenHH" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Gia" Type="bigint" Nullable="false" />
+    <Property Name="MoTa" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="Hinhanh" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HoaDon">
+    <Key>
+      <PropertyRef Name="MaHD" />
+    </Key>
+    <Property Name="MaHD" Type="nchar" Nullable="false" MaxLength="20" />
+    <Property Name="MaTk" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="MaHH" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="Status" Type="nvarchar" Nullable="false" MaxLength="10" />
+    <Property Name="NgayMua" Type="date" Nullable="false" />
+    <Property Name="SoLuong" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="LoaiHangHoa">
+    <Key>
+      <PropertyRef Name="MaLHH" />
+    </Key>
+    <Property Name="MaLHH" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenLHH" Type="nvarchar" Nullable="false" MaxLength="20" />
+  </EntityType>
+  <EntityType Name="QuangCao">
+    <Key>
+      <PropertyRef Name="MAQC" />
+    </Key>
+    <Property Name="MAQC" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenQC" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="HinhAnhQC" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="NgayBatDau" Type="date" Nullable="false" />
+    <Property Name="NgayKetThuc" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenTaiKhoan" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="MatMa" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="NgaySinh" Type="date" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="SoCMND" Type="nvarchar" Nullable="false" MaxLength="12" />
+    <Property Name="GioiTinh" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="CauTraLoi" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="CauHoi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="QuyenTruyCap" Type="smallint" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_HangHoa_LoaiHangHoa">
+    <End Role="LoaiHangHoa" Type="QLHangHoaModel.Store.LoaiHangHoa" Multiplicity="1" />
+    <End Role="HangHoa" Type="QLHangHoaModel.Store.HangHoa" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="LoaiHangHoa">
+        <PropertyRef Name="MaLHH" />
+      </Principal>
+      <Dependent Role="HangHoa">
+        <PropertyRef Name="MaLHH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDon_HangHoa">
+    <End Role="HangHoa" Type="QLHangHoaModel.Store.HangHoa" Multiplicity="1" />
+    <End Role="HoaDon" Type="QLHangHoaModel.Store.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="HangHoa">
+        <PropertyRef Name="MaHH" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="MaHH" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_HoaDon_TaiKhoan">
+    <End Role="TaiKhoan" Type="QLHangHoaModel.Store.TaiKhoan" Multiplicity="1" />
+    <End Role="HoaDon" Type="QLHangHoaModel.Store.HoaDon" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiKhoan">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HoaDon">
+        <PropertyRef Name="MaTk" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

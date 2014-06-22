@@ -1,0 +1,26 @@
+﻿@model SieuThiMVC.Models.CommentModel
+<ul>
+@if (WebSecurity.IsAuthenticated)
+{
+    using (Ajax.BeginForm("UpdateComment", new{id = Model.PID}, new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        UpdateTargetId = "div_comment"
+    }))
+    {
+        <li>
+            @Html.TextBoxFor(m => m.Comment)
+            <input type="submit" />
+        </li>
+    }
+}
+@foreach(var item in @SieuThiMVC.DataAccess.ProductsDBO.GetComment(Model.PID))
+{
+    <li>
+    <h6>@item.UID</h6>
+    <p>@item.Context</p>
+    </li>
+}
+</ul>
+

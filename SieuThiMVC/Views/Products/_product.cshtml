@@ -1,0 +1,39 @@
+﻿@model SieuThiMVC.Models.ListProduct
+@if (Model != null)
+{
+    int numcol = 4;
+    <table id="table_product">
+    @for (int i = 0; i < Model.MyList.Count/numcol; i++)
+    {
+        <tr>
+            @for (int j = i; j < i + numcol; j++)
+            {
+                <td>
+                    <div>
+                        @Html.ActionLink(@Model.MyList[i * numcol + j].Name, "Detail", new {id = @Model.MyList[i * numcol + j].ID})
+                        <img src="~/Images/ProductImages/@Model.MyList[i * numcol + j].ImgLink" />
+                        @Ajax.ActionLink("Mua: " + Model.MyList[i * numcol + j].Cost.ToString(), "PurchaseProduct", new {id = @Model.MyList[i * numcol + j].ID}, new AjaxOptions {HttpMethod = "POST", UpdateTargetId="cart", InsertionMode = InsertionMode.Replace })
+                        
+                    </div>
+                </td>
+            }
+        </tr>
+    }
+    @if(Model.MyList.Count % numcol != 0)
+    {
+        <tr>
+            @for (int j = Model.MyList.Count / numcol * numcol; j < Model.MyList.Count; j++)
+            {
+                <td>
+                    <div>
+                        @Html.ActionLink(@Model.MyList[j].Name, "Detail", new {id = @Model.MyList[j].ID})   
+                        <img src="~/Images/ProductImages/@Model.MyList[j].ImgLink" />
+                        @Ajax.ActionLink("Mua: " + Model.MyList[j].Cost.ToString(), "PurchaseProduct", new { id = @Model.MyList[j].ID }, new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "cart", InsertionMode = InsertionMode.Replace })
+                    </div>
+                </td>
+            }
+        </tr>
+    }
+    </table>
+}
+

@@ -1,0 +1,30 @@
+﻿<table>
+    <tr>
+        <td>ID</td>
+        <td>Tên tài khoản</td>
+        <td>Ngày sinh</td>
+        <td>Địa chỉ</td>
+        <td>Email</td>
+        <td>Số CMND</td>
+        <td>Số diện thoại</td>
+        <td>Giới tính</td>
+    </tr>
+@foreach(var item in SieuThiMVC.DataAccess.UserProfileDBO.GetAccounts())
+{
+    <tr>
+        <td>@item.ID</td>
+        <td>@item.Name</td>
+        <td>@item.Birth</td>
+        <td>@item.Address</td>
+        <td>@item.Email</td>
+        <td>@item.Identity</td>
+        <td>@item.Phone</td>
+        <td>@item.Gender</td>
+        <td>@Ajax.ActionLink("Xóa", "DeleteAccount", new { name = item.Name }, new AjaxOptions { 
+           HttpMethod = "POST",
+           InsertionMode = InsertionMode.Replace,
+           UpdateTargetId = "accountlist"
+        })</td>
+    </tr>
+}
+</table>

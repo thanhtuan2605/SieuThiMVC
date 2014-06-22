@@ -1,0 +1,18 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section featured {
+    
+    <div class="content-wrapper">
+            <div class="float-right">
+                <ul id="ManageMenu">
+                    <li>Quản lí:      </li>
+                    <li>@Html.ActionLink("Hàng hóa","ProductsManagement","Manage")</li>
+                    <li>@Html.ActionLink("Tài khoản","AccountManagement","Manage")</li>
+                    <li>@Html.ActionLink("Bình luận","CommentManagement","Manage")</li>
+                </ul>
+            </div>
+    </div>
+}
+@RenderBody()

@@ -1,0 +1,19 @@
+﻿@{
+    ViewBag.Title = "AddProduct";
+}
+
+<h2>Xóa hàng hóa</h2>
+@using (Html.BeginForm("DeleteProduct", "Manage", FormMethod.Post, 
+                            new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+    
+    <ol>
+        <li>
+            @Html.Label("Tên hàng")
+            @Html.TextBox("product")
+        </li>
+    </ol>
+    <input type="submit" value="Add product" />
+}

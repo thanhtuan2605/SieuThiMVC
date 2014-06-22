@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLHangHoaModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="QLHangHoaModelStoreContainer">
+    <EntitySet Name="QuangCao" EntityType="QLHangHoaModel.Store.QuangCao" store:Type="Tables" store:Schema="dbo" store:Name="QuangCao">
+      <DefiningQuery>SELECT 
+      [QuangCao].[MAQC] AS [MAQC], 
+      [QuangCao].[TenQC] AS [TenQC], 
+      [QuangCao].[HinhAnhQC] AS [HinhAnhQC], 
+      [QuangCao].[NgayBatDau] AS [NgayBatDau], 
+      [QuangCao].[NgayKetThuc] AS [NgayKetThuc]
+      FROM [dbo].[QuangCao] AS [QuangCao]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="TaiKhoan" EntityType="QLHangHoaModel.Store.TaiKhoan" store:Type="Tables" store:Schema="dbo" store:Name="TaiKhoan">
+      <DefiningQuery>SELECT 
+      [TaiKhoan].[ID] AS [ID], 
+      [TaiKhoan].[TenTaiKhoan] AS [TenTaiKhoan], 
+      [TaiKhoan].[MatMa] AS [MatMa], 
+      [TaiKhoan].[NgaySinh] AS [NgaySinh], 
+      [TaiKhoan].[DiaChi] AS [DiaChi], 
+      [TaiKhoan].[SoCMND] AS [SoCMND], 
+      [TaiKhoan].[GioiTinh] AS [GioiTinh], 
+      [TaiKhoan].[CauTraLoi] AS [CauTraLoi], 
+      [TaiKhoan].[CauHoi] AS [CauHoi], 
+      [TaiKhoan].[QuyenTruyCap] AS [QuyenTruyCap]
+      FROM [dbo].[TaiKhoan] AS [TaiKhoan]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'QLHangHoa.dbo.QuangCao' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="QuangCao">
+    <Key>
+      <PropertyRef Name="MAQC" />
+      <PropertyRef Name="TenQC" />
+      <PropertyRef Name="HinhAnhQC" />
+      <PropertyRef Name="NgayBatDau" />
+      <PropertyRef Name="NgayKetThuc" />
+    </Key>
+    <Property Name="MAQC" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenQC" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="HinhAnhQC" Type="nvarchar" Nullable="false" MaxLength="250" />
+    <Property Name="NgayBatDau" Type="date" Nullable="false" />
+    <Property Name="NgayKetThuc" Type="date" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+      warning 6002: The table/view 'QLHangHoa.dbo.TaiKhoan' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TenTaiKhoan" />
+      <PropertyRef Name="MatMa" />
+      <PropertyRef Name="NgaySinh" />
+      <PropertyRef Name="DiaChi" />
+      <PropertyRef Name="SoCMND" />
+      <PropertyRef Name="GioiTinh" />
+      <PropertyRef Name="CauTraLoi" />
+      <PropertyRef Name="CauHoi" />
+      <PropertyRef Name="QuyenTruyCap" />
+    </Key>
+    <Property Name="ID" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="TenTaiKhoan" Type="nvarchar" Nullable="false" MaxLength="20" />
+    <Property Name="MatMa" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="NgaySinh" Type="date" Nullable="false" />
+    <Property Name="DiaChi" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="SoCMND" Type="nvarchar" Nullable="false" MaxLength="12" />
+    <Property Name="GioiTinh" Type="nchar" Nullable="false" MaxLength="10" />
+    <Property Name="CauTraLoi" Type="nchar" Nullable="false" MaxLength="50" />
+    <Property Name="CauHoi" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="QuyenTruyCap" Type="smallint" Nullable="false" />
+  </EntityType>
+</Schema>

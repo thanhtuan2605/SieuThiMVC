@@ -1,0 +1,30 @@
+﻿@model SieuThiMVC.Models.FullUserProfile
+@{
+    ViewBag.Title = "Manage Account";
+}
+
+<hgroup class="title">
+    <h1>@ViewBag.Title.</h1>
+</hgroup>
+
+<p class="message-success">@ViewBag.StatusMessage</p>
+
+<p>You're logged in as <strong>@User.Identity.Name</strong>.</p>
+<p>@Html.ActionLink("Đổi mật khẩu", "ChancePassword", routeValues: null, htmlAttributes: new { @class = "username", title = "Thông tin khách hàng" })</p>
+<h3>Thông tin khách hàng</h3>
+<ul>
+    <li>Mã tài khoản: @Model.ID</li>
+    <li>Tên tài khoản: @Model.Name</li>
+    <li>Ngày sinh: @Model.Birth</li>
+    <li>Địa chỉ: @Model.Address</li>
+    <li>Email: @Model.Email</li>
+    <li>Giới tính: @Model.Gender</li>
+    <li>CMND: @Model.Identity</li>
+    <li>Số điện thoại: @Model.Phone</li>
+</ul>
+<p>@Html.ActionLink("Cập nhật thông tin", "UpdateProfile", routeValues: null, htmlAttributes: new {title="Cập nhật"})</p>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

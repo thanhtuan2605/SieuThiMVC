@@ -1,0 +1,15 @@
+﻿@model SieuThiMVC.Models.ProductModel
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Products/_ProductLayout.cshtml";
+}
+<h3>@Model.Name</h3>
+<img class="largeimg" src="~/Images/ProductImages/@Model.ImgLink" />
+<p>@Model.Discription</p>
+@Ajax.ActionLink("Mua: " + Model.Cost, "PurchaseProduct", new AjaxOptions{HttpMethod ="POST", InsertionMode=InsertionMode.Replace, UpdateTargetId="ShoppingCart"})
+@ViewBag.id = @Model.ID
+<div id="div_comment">
+    @Html.Partial("_CommentPartial", new SieuThiMVC.Models.CommentModel {PID = Model.ID})
+</div>
+
+

@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "_ProductLayout";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>_ProductLayout</h2>
+<div id="productinfo">
+    @RenderBody()
+</div>
+<div id="cart">
+    @Html.Partial("_ShoppingCart",Session["Cart"])
+</div>

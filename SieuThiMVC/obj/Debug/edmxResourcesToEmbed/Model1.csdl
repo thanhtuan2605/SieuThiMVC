@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QLHangHoaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="QLHangHoaEntities" p1:LazyLoadingEnabled="true">
+    <EntitySet Name="QuangCaos" EntityType="QLHangHoaModel.QuangCao" />
+    <EntitySet Name="TaiKhoans" EntityType="QLHangHoaModel.TaiKhoan" />
+  </EntityContainer>
+  <EntityType Name="QuangCao">
+    <Key>
+      <PropertyRef Name="MAQC" />
+      <PropertyRef Name="TenQC" />
+      <PropertyRef Name="HinhAnhQC" />
+      <PropertyRef Name="NgayBatDau" />
+      <PropertyRef Name="NgayKetThuc" />
+    </Key>
+    <Property Name="MAQC" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="TenQC" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="HinhAnhQC" Type="String" Nullable="false" MaxLength="250" Unicode="true" FixedLength="false" />
+    <Property Name="NgayBatDau" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="NgayKetThuc" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="TaiKhoan">
+    <Key>
+      <PropertyRef Name="ID" />
+      <PropertyRef Name="TenTaiKhoan" />
+      <PropertyRef Name="MatMa" />
+      <PropertyRef Name="NgaySinh" />
+      <PropertyRef Name="DiaChi" />
+      <PropertyRef Name="SoCMND" />
+      <PropertyRef Name="GioiTinh" />
+      <PropertyRef Name="CauTraLoi" />
+      <PropertyRef Name="CauHoi" />
+      <PropertyRef Name="QuyenTruyCap" />
+    </Key>
+    <Property Name="ID" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="TenTaiKhoan" Type="String" Nullable="false" MaxLength="20" Unicode="true" FixedLength="false" />
+    <Property Name="MatMa" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="NgaySinh" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="DiaChi" Type="String" Nullable="false" MaxLength="100" Unicode="true" FixedLength="false" />
+    <Property Name="SoCMND" Type="String" Nullable="false" MaxLength="12" Unicode="true" FixedLength="false" />
+    <Property Name="GioiTinh" Type="String" Nullable="false" MaxLength="10" Unicode="true" FixedLength="true" />
+    <Property Name="CauTraLoi" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="true" />
+    <Property Name="CauHoi" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
+    <Property Name="QuyenTruyCap" Type="Int16" Nullable="false" />
+  </EntityType>
+</Schema>

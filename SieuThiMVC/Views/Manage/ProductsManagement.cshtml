@@ -1,0 +1,29 @@
+﻿@model SieuThiMVC.Models.SortOfProduct
+
+<p>@Html.ActionLink("Thêm hàng hóa", "AddProduct","Manage")</p>
+<p>@Html.ActionLink("Thêm loại hàng hóa","SProduct","Manage")</p>
+
+@using (Ajax.BeginForm("SelectCategory", "Manage",       //Public Method inside our Controller 
+new AjaxOptions
+{
+    HttpMethod = "POST",     //Do a HTTP Post
+    InsertionMode = InsertionMode.Replace,  //Replace content
+    UpdateTargetId = "tbProducts",     //Target element ID
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure"
+}, new{id = "SubmitForm" }
+))
+{
+    
+    @Html.Label("Mặt hàng")
+    @Html.DropDownListFor(m => m.ID, new SelectList(SieuThiMVC.DataAccess.ProductsDBO.GetSortsOfProduct(), "ID", "Name"), new { onchange = "AdditionalsChanged(this)",id = "listhh"})
+}
+<div id="tbProducts">
+    @Html.Partial("_productsMagagePartial", new SieuThiMVC.Models.ListProduct { SelectedID = 1, MyList = SieuThiMVC.DataAccess.ProductsDBO.GetProductsByCategory(1) })
+</div>
+<script type="text/javascript">
+    function AdditionalsChanged() {
+        $("#SubmitForm").submit();
+    }
+    
+</script>

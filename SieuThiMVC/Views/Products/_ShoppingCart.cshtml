@@ -1,0 +1,46 @@
+﻿@model SieuThiMVC.Models.Order
+<h3>Giỏ hàng</h3>
+@if(Model!=null)
+{
+foreach (var item in Model.Orders)
+{
+    <p>
+        @Html.ActionLink(item.Product.Name, "Detail", new {id=item.Product.ID },new {@class = "non-underline"})
+        x @item.Quantity
+        |
+        @Ajax.ActionLink("+","AddQuantity",new {id = item.Product.ID}, new AjaxOptions{
+   InsertionMode = InsertionMode.Replace,
+   HttpMethod = "POST",
+   UpdateTargetId = "cart"},new {@class = "non-underline", title="Thêm"})
+        /
+        @Ajax.ActionLink("-","DecreaseQuantity",new {id = item.Product.ID}, new AjaxOptions{
+   InsertionMode = InsertionMode.Replace,
+   HttpMethod = "POST",
+   UpdateTargetId = "cart"},new {@class = "non-underline", title="Bớt"})
+        /
+        @Ajax.ActionLink("x","RemoveFromCart",new {id = item.Product.ID}, new AjaxOptions{
+   InsertionMode = InsertionMode.Replace,
+   HttpMethod = "POST",
+   UpdateTargetId = "cart"},new {@class = "non-underline", title = "Xóa"})
+    </p>
+}
+if(WebSecurity.IsAuthenticated&&Model.Orders.Count>0)
+{
+    @Html.ActionLink("Mua","AcceptCart")
+}
+else
+{
+    if(!User.Identity.IsAuthenticated)
+    {
+        <p style="color:red">Bạn phải đăng nhập mới mua được</p>
+    }
+    if(Model.Orders.Count==0)
+    {
+        <p style="color:red">Bạn chưa  mua mặt hàng nào</p>
+    }
+}
+}
+else
+{
+    <p>Giỏ hàng trống</p>
+}

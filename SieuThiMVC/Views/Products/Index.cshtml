@@ -1,0 +1,23 @@
+﻿@model SieuThiMVC.Models.SortOfProduct
+@{
+    Layout = "_ProductLayout.cshtml";
+}
+<div id="catemenu">
+<ul id="category_menu">
+    @foreach (var item in SieuThiMVC.DataAccess.ProductsDBO.GetSortsOfProduct())
+    {
+        <li>
+        @Ajax.ActionLink(item.Name, "SelectCategory", new{id = item.ID}, new AjaxOptions
+   {
+       HttpMethod = "POST",
+       InsertionMode = InsertionMode.Replace,
+       UpdateTargetId = "tbProducts"
+   })
+        </li>
+    }  
+    </ul> 
+</div>
+<div id="tbProducts">
+</div>
+
+

@@ -1,0 +1,42 @@
+﻿@model SieuThiMVC.Models.SortOfProductModel
+@{
+    ViewBag.Title = "SProduct";
+    Layout = "~/Views/Shared/_ManageLayout.cshtml";
+}
+<div class="content-wrapper">
+    <h3>Các loại hàng hóa</h3>
+    <table class="border-table">
+    <tr>
+        <td>Mã Loại</td>
+        <td>Tên loại hàng hóa</td>
+    </tr>
+    @foreach (var item in ViewBag.Items)
+    {
+        var sp = item as SieuThiMVC.Models.SortOfProduct;
+        <tr>
+            <td>
+                @sp.ID
+            </td>
+            <td>
+                @sp.Name
+            </td>
+        </tr>
+    }
+    </table>
+</div>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+<fieldset>
+    <legend>Add sort of product Form</legend>
+    <ul>
+        <li>
+            @Html.LabelFor(m => m.SProduct)
+            @Html.TextBoxFor(m => m.SProduct)
+        </li>
+    </ul>
+    <input type="submit" value="Add" />
+</fieldset>
+}
+

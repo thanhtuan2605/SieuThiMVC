@@ -1,0 +1,44 @@
+﻿@model SieuThiMVC.Models.UpdateModel
+@{
+    ViewBag.Title = "UpdateProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cập nhật thông tin</h2>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary()
+<fieldset>
+        <legend>Registration Form</legend>
+        <ol>
+            <li>
+                @Html.LabelFor(m => m.Email)
+                @Html.TextBoxFor(m => m.Email)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Gender)
+                <span>Male</span>
+                @Html.RadioButtonFor(m => m.Gender,"Nam", new{id="male", style="width:30px"})
+                <span>Female</span>
+                @Html.RadioButtonFor(m => m.Gender,"Nữ", new{id="female", style="width:30px"})
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Birthday)
+                @Html.TextBoxFor(m => m.Birthday)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Address)
+                @Html.TextBoxFor(m => m.Address)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Identitynum)
+                @Html.TextBoxFor(m => m.Identitynum)
+            </li>
+            <li>
+                @Html.LabelFor(m => m.Phonenum)
+                @Html.TextBoxFor(m => m.Phonenum)
+            </li>
+        </ol>
+        <input type="submit" value="Update" />
+    </fieldset>
+}
